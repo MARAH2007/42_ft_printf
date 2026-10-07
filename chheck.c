@@ -27,5 +27,5 @@ int	ft_check(char format, va_list args)
 		return (ft_printx(args));
 	else if (format == 'u')
 		return (ft_printdigitu(args));
-	return (0);
+	return (-1);
 }

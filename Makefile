@@ -14,7 +14,6 @@ SRCS =	ft_printchar.c\
 	ft_printu.c \
 	ft_printx.c \
 	ft_printX.c \
-	ft_printf.h \
 	chheck.c \
 
 OBJ = $(SRCS:.c=.o)

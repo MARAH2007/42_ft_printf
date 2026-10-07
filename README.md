@@ -1,54 +1,94 @@
-*This activity has been created as part of the 42 curriculum by mnazzal*
-
+*This activity has been created as part of the 42 curriculum by MARAH2007.*
 # ft_printf
+
+> This project is part of the 42 Core Curriculum.
 
 ## Description
 
-`ft_printf` is a 42 project that recreates the behavior of the standard C `printf()` function.
+`ft_printf` is a recreation of the standard C `printf()` function.
 
-The goal of this project is to learn how variadic functions work in C using `va_list`, `va_start`, `va_arg`, and `va_end`, while also practicing string manipulation, number conversion, and formatted output.
+The goal of this project is to understand and implement variadic functions in C, while learning how formatted output is processed and how different types of arguments are handled.
 
-## Supported Conversions
+The function supports the following conversions:
 
-This implementation supports the following conversions:
+* `%c` — prints a character
+* `%s` — prints a string
+* `%p` — prints a pointer address in hexadecimal format
+* `%d` — prints a decimal number
+* `%i` — prints an integer in base 10
+* `%u` — prints an unsigned decimal number
+* `%x` — prints a number in lowercase hexadecimal
+* `%X` — prints a number in uppercase hexadecimal
+* `%%` — prints a percent sign
 
-| Conversion | Description |
-|---|---|
-| `%c` | Prints a single character |
-| `%s` | Prints a string |
-| `%p` | Prints a pointer address in hexadecimal |
-| `%d` | Prints a decimal number |
-| `%i` | Prints an integer in base 10 |
-| `%u` | Prints an unsigned decimal number |
-| `%x` | Prints a number in lowercase hexadecimal |
-| `%X` | Prints a number in uppercase hexadecimal |
-| `%%` | Prints a `%` character |
+## Prototype
 
-## How It Works
-
-The function checks the format string character by character.
-
-When it finds `%`, it checks the following character to determine which conversion should be used.
-
-For example:
-
-```text
-ft_printf("Hello %s!\n", "World");
+```c
+int ft_printf(const char *format, ...);
 ```
 
-produces:
+## Compilation
 
-```text
-Hello World!
+The project uses a `Makefile`.
+
+Available rules:
+
+```bash
+make
+make clean
+make fclean
+make re
 ```
 
-The function also returns the total number of characters that were printed.
+The compilation flags are:
 
-## Variadic Arguments
+```bash
+-Wall -Wextra -Werror
+```
 
-This project uses the `stdarg.h` library to handle a variable number of arguments.
+The final static library is:
 
-The main tools used are:
+```text
+libftprintf.a
+```
+
+## Usage
+
+Include the header:
+
+```c
+#include "ft_printf.h"
+```
+
+Example:
+
+```c
+int main(void)
+{
+    ft_printf("Hello %s!\n", "Marah");
+    ft_printf("Number: %d\n", 42);
+    ft_printf("Hexadecimal: %x\n", 42);
+    return (0);
+}
+```
+
+Compile:
+
+```bash
+cc main.c libftprintf.a
+```
+
+Run:
+
+```bash
+./a.out
+```
+
+## Variadic Functions
+
+A major part of this project is working with variadic functions.
+
+The function receives a variable number of arguments using:
 
 ```c
 va_list
@@ -57,67 +97,77 @@ va_arg
 va_end
 ```
 
-These allow `ft_printf` to receive different types and numbers of arguments depending on the format string.
-
-## Compilation
-
-Compile the project with:
-
-```bash
-cc -Wall -Wextra -Werror *.c
-```
-
-## Usage
-
-Example:
-
-```c
-#include "ft_printf.h"
-
-int	main(void)
-{
-	ft_printf("Character: %c\n", 'A');
-	ft_printf("String: %s\n", "Hello");
-	ft_printf("Number: %d\n", 42);
-	ft_printf("Unsigned: %u\n", 42);
-	ft_printf("Hex: %x\n", 255);
-	ft_printf("Pointer: %p\n", &main);
-	ft_printf("Percent: %%\n");
-
-	return (0);
-}
-```
+These macros allow `ft_printf` to retrieve and process arguments according to the conversion specified in the format string.
 
 ## Project Structure
 
 ```text
-ft_printf/
-├── ft_printf.c
+.
+├── Makefile
+├── README.md
 ├── ft_printf.h
+├── ft_printf.c
 ├── ft_printchar.c
+├── ft_printstr.c
 ├── ft_printdigit.c
-├── ft_printp.c
-├── ...
-└── README.md
+├── ft_printptr.c
+├── ft_printhex.c
+└── ...
 ```
 
 ## Learning Objectives
 
-Through this project, I practiced:
+Through this project, I learned more about:
 
-- Variadic functions
-- `va_list` and `va_arg`
-- Pointers
-- Decimal and hexadecimal conversion
-- Recursion
-- String handling
-- File descriptors and `write()`
-- Memory and type conversions
-- Organizing a C project into multiple files
-- Following the 42 Norm
+* Variadic functions
+* `va_list`
+* `va_start`
+* `va_arg`
+* `va_end`
+* Function decomposition
+* Static libraries
+* Makefiles
+* Number bases and hexadecimal conversion
+* Pointers and memory addresses
+* Formatted output
+* Return values and counting printed characters
+
+## Allowed Functions
+
+The project uses the functions allowed by the 42 subject, including:
+
+```c
+malloc
+free
+write
+va_start
+va_arg
+va_copy
+va_end
+```
+
+My `libft` library is also used where allowed.
+
+## Resources
+
+The following resources were useful for understanding the concepts and requirements of this project:
+
+* [42 ft_printf Subject](https://cdn.intra.42.fr/pdf/pdf/154230/en.subject.pdf)
+* [C Programming Language — cppreference](https://en.cppreference.com/w/c)
+* [printf — cppreference](https://en.cppreference.com/w/c/io/fprintf)
+* [stdarg.h — cppreference](https://en.cppreference.com/w/c/variadic)
+* [write — man7](https://man7.org/linux/man-pages/man2/write.2.html)
+* [GNU C Library — Variadic Functions](https://sourceware.org/glibc/manual/html_node/Variadic-Functions.html)
+
+## AI Usage
+
+AI tools were used as a learning resource to help understand concepts, debug errors, and clarify parts of the project.
+
+The implementation was written and tested as part of my own learning process.
 
 ## Author
 
 **Marah Nazzal**
 
-42 School — ft_printf
+42 Student
+
